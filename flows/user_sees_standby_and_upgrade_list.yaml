@@ -1,0 +1,44 @@
+# execution time:
+# open flight status screen: 1:18 min
+# check Standby & upgrade list: 0:35 sec
+
+appId: com.aircanada
+---
+- runFlow:
+    file: user_finds_flight_by_route.yaml
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      text: "Standby & upgrade list"
+    direction: UP
+    speed: 40
+    visibilityPercentage: 100
+- tapOn: "Standby & upgrade list"
+- assertVisible: "Standby list"
+- assertVisible: "Economy"
+- assertVisible:
+    text: "Available"
+    index: 0
+- assertVisible: "Business"
+- assertVisible:
+    text: "Available"
+    index: 1
+# Given this screen is a list it's better to use scrollUntilVisible in case the message is not in the viewport
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      text: "List only includes eligible passengers that have checked in for this flight."
+    direction: DOWN
+    speed: 40
+    visibilityPercentage: 100
+- swipe:
+    direction: LEFT
+- assertVisible: "Upgrade list"
+# Given this screen is a list it's better to use scrollUntilVisible in case the message is not in the viewport
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      text: "List only includes eligible passengers that have checked in for this flight."
+    direction: DOWN
+    speed: 40
+    visibilityPercentage: 100

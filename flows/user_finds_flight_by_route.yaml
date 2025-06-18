@@ -1,0 +1,41 @@
+# execution time:
+# open flight status screen: 1:18 min
+
+appId: com.aircanada
+---
+- launchApp:
+    appId: com.aircanada
+    clearState: true
+# - launchApp: com.aircanada
+- tapOn:
+    text: "Flight status"
+    index: 1
+- tapOn:
+    text: "By route"
+    index: 1
+- runFlow:
+    when:
+      visible: "Allow Air Canada to access this device’s location?"
+    file: "subflows/set_location_permission_while_using_the_app.yaml"
+- inputText: Toronto
+- tapOn: Toronto-Pearson International Airport
+- inputText: Porto
+- tapOn: OPO
+- tapOn:
+    id: com.aircanada:id/flight_status_search_icon_button
+- assertVisible:
+    id: "flightStatus_resultsList_header"
+- assertVisible:
+    text: "Updated less than a minute ago"
+- assertVisible:
+    text: "Tip: Tap on a flight to see more details"
+- assertVisible:
+    text: "Toronto  YYZ"
+    index: 0
+- assertVisible:
+    text: "Porto  OPO"
+    index: 0
+# is it possible to always use the same flight number if we're running the tets multiple times per day?
+- tapOn: AC 8880
+- assertVisible:
+    text: "AC8880 on Wednesday, June 18, 2025"

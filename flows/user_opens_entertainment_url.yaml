@@ -1,0 +1,4 @@
+appId: com.aircanada
+---
+- openLink: https://entertainment.aircanada.com/
+- assertVisible: "entertainment.aircanada.com"

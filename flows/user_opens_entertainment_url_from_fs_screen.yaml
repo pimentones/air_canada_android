@@ -1,0 +1,13 @@
+appId: com.aircanada
+---
+- runFlow:
+    file: user_finds_flight_by_route.yaml
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      text: "Streaming entertainment available"
+    direction: UP
+    speed: 40
+    visibilityPercentage: 100
+- tapOn: "See what's playing on board �"
+- assertVisible: "entertainment.aircanada.com"

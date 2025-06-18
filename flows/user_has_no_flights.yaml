@@ -1,0 +1,10 @@
+appId: com.aircanada
+---
+- launchApp:
+    appId: com.aircanada
+    clearState: true
+- tapOn:
+    text: "Flight status"
+    index: 1
+# to make this assert more reliable we would need to assert on the element's id
+- assertVisible: "Flight status for your upcoming flights will automatically appear here 3 days before departure."
